@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
+    /**
+     * @param Request $request
+     *
+     * @return [type]
+     */
     public function fetch(Request $request)
     {
         return ResponseFormatter::success(
@@ -22,6 +27,11 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return [type]
+     */
     public function updateProfile (Request $request)
     {
         try {
@@ -63,6 +73,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return [type]
+     */
     public function updateProfilePhoto(Request $request)
     {
         $validator = Validator::make($request->all(), [
