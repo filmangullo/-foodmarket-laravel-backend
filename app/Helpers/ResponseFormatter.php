@@ -23,6 +23,11 @@ class ResponseFormatter
 
     /**
      * Give success response.
+     *
+     * @param null $data
+     * @param null $message
+     *
+     * @return [type]
      */
     public static function success($data = null, $message = null)
     {
@@ -34,6 +39,12 @@ class ResponseFormatter
 
     /**
      * Give error response.
+     *
+     * @param null $data
+     * @param null $message
+     * @param int $code
+     *
+     * @return [type]
      */
     public static function error($data = null, $message = null, $code = 400)
     {

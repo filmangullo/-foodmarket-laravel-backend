@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\MidtransController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::prefix('dashboard')->middleware(['auth:sanctum', 'admin'])->group(function() {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('users', UserController::class);
+
+});
 
 // Midtrans related
 Route::get('midtrans/success', [MidtransController::class, 'success']);
