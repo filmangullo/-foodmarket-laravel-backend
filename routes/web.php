@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\MidtransController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,10 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'admin'])->group(functio
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('users', UserController::class);
+    Route::resource('food', FoodController::class);
+
+    Route::get('transactions/{id}/status/{status}', [TransactionController::class, 'status'])->name('transactions.status');
+    Route::resource('transactions', TransactionController::class);
 
 });
 

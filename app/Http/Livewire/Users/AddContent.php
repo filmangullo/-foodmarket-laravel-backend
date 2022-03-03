@@ -19,7 +19,7 @@ class AddContent extends Component
     public $email;
     public $password;
     public $passwordConfirmation;
-    public $role;
+    public $role = 'USER';
     public $address;
     public $houseNumber;
     public $city;

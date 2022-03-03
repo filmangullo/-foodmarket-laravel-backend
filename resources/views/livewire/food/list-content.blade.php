@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <a href="{{ route('users.create') }}" class="py-2 bg-sky-600 hover:bg-sky-900 text-white px-2.5 rounded-md">+ User Create</a>
+                        <a href="{{ route('food.create') }}" class="py-2 bg-sky-600 hover:bg-sky-900 text-white px-2.5 rounded-md">+ Food Create</a>
                     </div>
                 </div>
                 <div class="overflow-hidden">
@@ -30,7 +30,7 @@
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
-                                    #
+                                    ID
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
@@ -38,11 +38,15 @@
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
-                                    Email
+                                    Price
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
-                                    Role
+                                    Rate
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
+                                    Type
                                 </th>
                                 <th scope="col" class="p-4">
                                     <span class="sr-only">Action</span>
@@ -50,25 +54,28 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y ">
-                            @forelse ($users as $key => $user)
+                            @forelse ($food as $key => $item)
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                 <td class="w-4 p-4">
-                                    {{ $key+1 }}
+                                    {{ $item->id }}
                                 </td>
                                 <td
                                     class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
-                                    {{ $user->name }}</td>
+                                    {{ $item->name }}</td>
                                 <td
                                     class="px-6 py-4 text-sm font-medium text-gray-500 whitespace-nowrap ">
-                                    {{ $user->email }}</td>
+                                    {{ number_format($item->price) }}</td>
                                 <td
                                     class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
-                                    {{ $user->role }}</td>
+                                    {{ $item->rate }}</td>
+                                <td
+                                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                                    {{ $item->types }}</td>
                                 <td
                                     class="flex justify-end px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <a href="{{ route('users.edit', $user->id ) }}" class="inline-block py-2 mx-2 font-bold text-white bg-blue-500 rounded px-7 hover:bg-blue-700">Edit</a>
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
+                                    <a href="{{ route('food.edit', $item->id ) }}" class="inline-block py-2 mx-2 font-bold text-white bg-blue-500 rounded px-7 hover:bg-blue-700">Edit</a>
+                                    <form action="{{ route('food.destroy', $item->id) }}" method="POST" class="inline-block">
                                         {!! method_field('delete') . csrf_field() !!}
                                         <button type="submit" class="inline-block px-4 py-2 mx-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
                                             Delete
@@ -80,7 +87,7 @@
 
                             @empty
                             <tr>
-                                <td colspan="5"
+                                <td colspan="6"
                                     class="px-6 py-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">No
                                     matching data</td>
                             </tr>
@@ -89,7 +96,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $users->links() }}
+                {{ $food->links() }}
             </div>
         </div>
     </div>
