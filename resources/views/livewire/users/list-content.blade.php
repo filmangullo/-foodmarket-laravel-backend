@@ -67,7 +67,7 @@
                                     {{ $user->role }}</td>
                                 <td
                                     class="flex justify-between px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <a href="{{ route('users.edit', $user->id ) }}" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                     <a href="#" class="text-red-600 dark:text-red-500 hover:underline">Delete</a>
                                 </td>
                             </tr>

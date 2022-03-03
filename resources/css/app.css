@@ -1,3 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer components {
+    .error-xs {
+      @apply text-xs text-red-600;
+    }
+}
