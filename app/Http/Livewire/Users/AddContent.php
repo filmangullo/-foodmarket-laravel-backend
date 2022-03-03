@@ -14,12 +14,12 @@ class AddContent extends Component
     public $user;
 
     public $profilePhotoPath;
-    public $name = 'User';
-    public $phoneNumber = '085277230962';
-    public $email = 'user@mail.com';
+    public $name;
+    public $phoneNumber;
+    public $email;
     public $password;
     public $passwordConfirmation;
-    public $role = 'USER';
+    public $role;
     public $address;
     public $houseNumber;
     public $city;
@@ -31,7 +31,6 @@ class AddContent extends Component
         'phoneNumber'           => 'nullable|string|max:255',
         'city'                  => 'nullable|string|max:255',
         'role'                  => 'required|string|max:255|in:USER,ADMIN',
-        'profilePhotoPath'     => 'image|max:1024'
     ];
 
     public function mount($user)
@@ -43,11 +42,11 @@ class AddContent extends Component
             $this->user = $user;
 
             $this->name          = $this->user->name;
-            $this->phone_num     = $this->user->phoneNumber;
+            $this->phoneNumber   = $this->user->phone_num;
             $this->email         = $this->user->email;
             $this->role          = $this->user->role;
             $this->address       = $this->user->address;
-            $this->house_num     = $this->user->houseNumber;
+            $this->houseNumber   = $this->user->house_num;
             $this->city          = $this->user->city;
         }
     }
@@ -63,6 +62,11 @@ class AddContent extends Component
             $this->rules['email']                   = 'required|string|email|max:255|unique:users';
             $this->rules['password']                = 'min:6|required_with:passwordConfirmation|same:passwordConfirmation';
             $this->rules['passwordConfirmation']    = 'min:6';
+        }
+
+        if($this->profilePhotoPath)
+        {
+            $this->rules['profilePhotoPath']        = 'image|max:1024';
         }
 
         $this->validate();
@@ -81,9 +85,8 @@ class AddContent extends Component
             $data['profile_photo_path'] = $this->profilePhotoPath->store('assets/user', 'public');
         }
         if($this->password) {
-            $this->data['password']      = Hash::make($this->password);
+            $data['password']      = Hash::make($this->password);
         }
-
         if ($edit) {
             $this->handleEventUpload($data);
         } else {

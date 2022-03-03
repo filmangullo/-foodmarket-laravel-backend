@@ -85,8 +85,8 @@
                                     <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
                                     <select wire:model="role" id="role" name="role" autocomplete="role"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option>USER</option>
-                                        <option>ADMIN</option>
+                                        <option value="USER">USER</option>
+                                        <option value="ADMIN">ADMIN</option>
                                     </select>
                                     @error('role') <span class="error-xs">{{ $message }}</span> @enderror
                                 </div>
