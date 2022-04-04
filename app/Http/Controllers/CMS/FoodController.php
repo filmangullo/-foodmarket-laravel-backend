@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CMS;
 
-use App\Models\Transaction;
+use App\Models\Food;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TransactionController extends Controller
+class FoodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('pages.transactions.index');
+        return view('pages.cms.food.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.cms.food.create');
     }
 
     /**
@@ -44,9 +45,9 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
-        return view('pages.transactions.view', ['transaction' => $transaction]);
+        //
     }
 
     /**
@@ -57,7 +58,9 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pages.cms.food.edit', [
+            'food' => Food::findOrFail($id)
+        ]);
     }
 
     /**
@@ -80,25 +83,9 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        $user = Transaction::findOrFail($id);
+        $user = Food::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('transactions.index');
-    }
-
-    /**
-     * Change status on storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function status(Request $request, $id, $status)
-    {
-        $transaction = Transaction::findOrFail($id);
-
-        $transaction->status = $status;
-        $transaction->save();
-
-        return redirect()->route('transactions.show', $id);
+        return redirect()->route('food.index');
     }
 }

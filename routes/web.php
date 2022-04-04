@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\MidtransController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FoodController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CMS\UserController;
+use App\Http\Controllers\CMS\DashboardController;
+use App\Http\Controllers\CMS\FoodController;
+use App\Http\Controllers\CMS\TransactionController;
+use App\Http\Controllers\WEB\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::match(['get', 'post'], '/', [HomeController::class, 'index'])->name('web.home');
+
 
 Route::prefix('dashboard')->middleware(['auth:sanctum', 'admin'])->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

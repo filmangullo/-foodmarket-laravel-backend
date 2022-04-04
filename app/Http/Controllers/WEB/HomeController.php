@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\WEB;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +14,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboards.index');
+        return view('pages.web.home.index');
     }
 }

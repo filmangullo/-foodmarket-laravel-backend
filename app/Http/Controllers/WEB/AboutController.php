@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\WEB;
 
-use App\Models\Food;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FoodController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        return view('pages.food.index');
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('pages.food.create');
+        //
     }
 
     /**
@@ -57,9 +57,7 @@ class FoodController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.food.edit', [
-            'food' => Food::findOrFail($id)
-        ]);
+        //
     }
 
     /**
@@ -82,9 +80,6 @@ class FoodController extends Controller
      */
     public function destroy($id)
     {
-        $user = Food::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('food.index');
+        //
     }
 }
