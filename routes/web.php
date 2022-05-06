@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MidtransController;
+use App\Http\Controllers\CMS\BlogController;
 use App\Http\Controllers\CMS\UserController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\FoodController;
@@ -34,6 +35,8 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'admin'])->group(functio
 
     Route::get('transactions/{id}/status/{status}', [TransactionController::class, 'status'])->name('transactions.status');
     Route::resource('transactions', TransactionController::class);
+
+    Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 
 });
 
